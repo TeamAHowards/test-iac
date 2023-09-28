@@ -15,14 +15,14 @@ workflows:
           checkout: true
           context: terraform
           requires:
-            - terraform/fmt
+            - "Terraform: Format"
       - terraform/plan:
           name: "Terraform: Plan"
           checkout: true
           context: terraform
           persist-workspace: true
           requires:
-            - terraform/validate
+            - "Terraform: Validate"
       - terraform/apply:
           name: "Terraform: Apply"
           attach-workspace: true
@@ -31,4 +31,4 @@ workflows:
             branches:
               only: main
           requires:
-            - terraform/plan
+            - "Terraform: Plan"
